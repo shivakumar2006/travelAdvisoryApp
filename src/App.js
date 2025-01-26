@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { CssBaseline, Grid } from '@mui/material'; // Use Grid instead of Grid2
+import Header from './components/Header/Header';
+import List from './components/List/List';
+import Map from './components/Map/Map';
+import { ThemeProvider, createTheme } from '@mui/material/styles'; // Add ThemeProvider
 
-function App() {
+// Define your theme (optional)
+const theme = createTheme();
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}> {/* Wrap the app with ThemeProvider */}
+      <CssBaseline />
+      <Header />
+      <Grid container spacing={3} style={{ width: '100%' }}>
+        <Grid item xs={12} mb={4}>
+          <List />
+        </Grid>
+        <Grid item xs={12} mb={8}>
+          <Map />
+        </Grid>
+      </Grid>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
